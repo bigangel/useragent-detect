@@ -1,0 +1,115 @@
+<project xmlns:ivy="antlib:org.apache.ivy.ant" 
+    name="User_Agent_Detect" default="main"
+    basedir=".">
+    <description>user agent</description>
+    
+    <!-- part I, declare common properties for reuse in the future -->
+    <property name="projectName" value="useragent-detect" />
+
+	<property name="version" value="0.0.1"/>
+	
+    <!-- Java sources directory -->
+    <property name="src.dir" location="src" />
+
+    <!-- Java classes directory -->
+    <property name="build.dir" location="bin" />
+
+    <!-- Output, Jar -->
+    <property name="dist.dir" location="dist" />
+    
+    <!--define lib dir to put libraries -->
+    <property name="lib.dir" value="lib" />
+    
+	<property name="src_config.dir" location="${src.dir}/com/jingxuan/config" />
+    <property name="config.dir" location="${build.dir}/com/jingxuan/config" />
+    
+     
+    <!-- install ivy. download ivy and put it your .ant/lib/ directory -->
+    <target name="ivy_install" description="install ivy">
+        <mkdir dir="${user.home}/.ant/lib" />
+        <get dest="${user.home}/.ant/lib/ivy.jar"
+            src="http://search.maven.org/remotecontent?filepath=org/apache/ivy/ivy/2.4.0-rc1/ivy-2.4.0-rc1.jar" />
+    </target>
+    
+    <!-- ivy start -->
+        <!-- ivy to get dependencies and copy to project lib folder automatically -->
+    <!--  we must to have to create a new file named ivy.xml for managing dependencies -->
+    <target name="resolve" description="retrieve dependencies with ivy">
+            <ivy:retrieve />
+    </target>
+    
+    <!-- declare classpath -->
+    <path id="classpath">
+        <fileset dir="${basedir}/">
+            <include name="${lib.dir}/gson-2.3.1.jar" />
+            <exclude name="${lib.dir}/*sources.jar" />
+            <exclude name="${lib.dir}/*javadoc.jar" />
+        </fileset>
+    </path>
+    
+    <!-- constructs the external libraries classpath name -->
+    <pathconvert property="classpath.name" pathsep=" ">
+        <path refid="classpath"/>
+        <mapper>
+            <chainedmapper>
+                <flattenmapper />
+                <globmapper from="*.jar" to="*.jar" />
+            </chainedmapper>
+        </mapper>
+    </pathconvert>
+    
+    <!-- copy this dependencies to dist/lib -->
+    <target name="copy_dependenies">
+        <copy todir="${dist.dir}">
+            <fileset dir="${lib.dir}" includes="**/gson-2.3.1.jar"/>
+        </copy>
+    </target>
+    
+    <!-- copy this dependencies to dist/lib -->
+    <target name="copy_configurations">
+        <copy todir="${config.dir}">
+            <fileset dir="${src_config.dir}" includes="**/*.json"/>
+        </copy>
+    </target>
+	
+    <!-- define init task for initializing some directories -->
+    <target name="init" depends="resolve">
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${config.dir}" />
+    </target>
+    
+    <!-- use javac command to compile our java source code -->
+    <target name="compile" depends="init" description="compile the source ">
+        <!-- Compile the java code from ${src.dir} into ${build.dir} -->
+        <javac includeantruntime="false" srcdir="${src.dir}"
+            destdir="${build.dir}" classpathref="classpath"
+            excludes="com/jingxuan/test/**">
+        </javac>
+    </target>
+    
+    <!-- use java jar command to package our classes to a .JAR file -->
+    <target name="dist" description="package, output to JAR" depends="compile,copy_dependenies,copy_configurations">
+        <!-- Create the distribution directory -->
+        <mkdir dir="${dist.dir}" />
+
+        <!-- Put everything in ${build} into the {$projectName}.jar file -->
+        <!--  use our project name as the .JAR file's name -->
+        <jar jarfile="${dist.dir}/${projectName}-${version}.jar"  basedir="${build.dir}">
+            <manifest>
+                <!--  include classpath -->
+                <attribute name="Class-Path" value="${classpath.name}" />
+            </manifest>
+        </jar>
+    </target>
+    
+    <!-- after done some target, we could clean up using this task -->
+    <target name="clean" description="clean up">
+        <delete dir="${build.dir}" />
+        <delete dir="${dist.dir}" />
+    </target>
+    
+    <!-- Default, run this. if you did't type ant in this command, it will be running -->
+    <target name="main" depends="clean, compile, dist" />
+
+</project>
