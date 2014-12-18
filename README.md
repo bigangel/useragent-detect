@@ -7,8 +7,8 @@ According to the user agent of HTTP header detects the os, browser, phone, table
 
 ##Usage
 
-1. import those .jars file under dist directory(our useragent-detect.jar depends on gson.jar using to parse json data).
-2. now, you can use all of methods and learn how to detect os, browser, phone, tablet and so on. Please have a look at the following example.
+1. import original-useragent-detect-0.0.1-SNAPSHOT.jar(don't include gson classess) or useragent-detect-0.0.1-SNAPSHOT.jar(includes gson classes) into your classpath.
+2. now, you should learn how to use these APIs. Please see the following example.
 
 ## Examples
 
@@ -41,10 +41,17 @@ String userAgent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; e
 
 ## Build
 
-1. download and install ANT(we use ant version 1.9.4).
-2. type `ant resolve ` in a terminal or a command line to download those dependenies by ivy tools.
-3. type `ant dist` to package the classess.
-4. Ok. you could find the output .jar file under the dist diretory.
+1. Install maven on your system.
+2. CD to the project directory. e.g. `cd E://useragent-detect`
+3. Run `mvn clean package` in your CMD or a terminal.
+4. Ok. you will get twos jars file under the target folder.
+  - original-useragent-detect-0.0.1-SNAPSHOT.jar(don't include gson classes, so you must import gson jar)
+  - useragent-detect-0.0.1-SNAPSHOT.jar(include gson classes, this means that you don't have to import gson jar file)
+
+##Authoer
+  - Andy Li
+  - Jia  Li
+  - Fengding Liao
 
 ##License
 
