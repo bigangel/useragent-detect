@@ -48,7 +48,7 @@ String userAgent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; e
   - original-useragent-detect-0.0.1-SNAPSHOT.jar(don't include gson classes, so you must import gson jar)
   - useragent-detect-0.0.1-SNAPSHOT.jar(include gson classes, this means that you don't have to import gson jar file)
 
-##Authoer
+##Author
   - Andy Li
   - Jia  Li
   - Fengding Liao
