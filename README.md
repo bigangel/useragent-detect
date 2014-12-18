@@ -52,6 +52,9 @@ String userAgent = "Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; e
   - Andy Li
   - Jia  Li
   - Fengding Liao
+  
+##How to contribute
+Fork our project & commit a pull request. We will take any nice idea. Welcome to join us !
 
 ##License
 
