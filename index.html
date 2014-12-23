@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="UserAgent  Detect : According to the user agent of HTTP header detects the os, browser, phone, tablet and their version">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>UserAgent  Detect</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/bigangel/useragent-detect">View on GitHub</a>
+
+          <h1 id="project_title">UserAgent  Detect</h1>
+          <h2 id="project_tagline">According to the user agent of HTTP header detects the os, browser, phone, tablet and their version</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/bigangel/useragent-detect/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/bigangel/useragent-detect/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="useragent-detect" class="anchor" href="#useragent-detect" aria-hidden="true"><span class="octicon octicon-link"></span></a>UserAgent-Detect</h1>
+
+<h2>
+<a id="our-goal" class="anchor" href="#our-goal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Goal</h2>
+
+<p>According to the user agent of HTTP header detects the os, browser, phone, tablet and their version(the current version don't support of getting the version number but we will add the functionality in the future).</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<ol>
+<li>import original-useragent-detect-0.0.1-SNAPSHOT.jar(don't include gson classess) or useragent-detect-0.0.1-SNAPSHOT.jar(includes gson classes) into your classpath.</li>
+<li>now, you should learn how to use these APIs. Please see the following example.</li>
+</ol>
+
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<div class="highlight highlight-java"><pre><span class="pl-stj">String</span> userAgent <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; en) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/19.0.1084.60 Mobile/9B206 Safari/7534.48.3<span class="pl-pds">"</span></span>;   
+
+        <span class="pl-c">// detect mobile -- phone or tablet</span>
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-stj">Mobile</span><span class="pl-k">.</span>isPhone(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-stj">Mobile</span><span class="pl-k">.</span>isTablet(userAgent));
+
+        <span class="pl-c">// detect browser</span>
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-stj">Browser</span><span class="pl-k">.</span>isChrome(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-stj">Browser</span><span class="pl-k">.</span>isFirefox(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-stj">Browser</span><span class="pl-k">.</span>isIE(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-stj">Browser</span><span class="pl-k">.</span>isOpera(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-stj">Browser</span><span class="pl-k">.</span>isSafari(userAgent));
+
+        <span class="pl-c">// detect os</span>
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isAndroid(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isBlackBerry(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isIOS(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isLinux(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isDesktop(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isMac(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isSymbian(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isWindowPhone(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isWindowMobile(userAgent));
+        <span class="pl-stj">System</span><span class="pl-k">.</span>out<span class="pl-k">.</span>println(<span class="pl-c1">OS</span><span class="pl-k">.</span>isWindow(userAgent));</pre></div>
+
+<h2>
+<a id="build" class="anchor" href="#build" aria-hidden="true"><span class="octicon octicon-link"></span></a>Build</h2>
+
+<ol>
+<li>Install maven on your system.</li>
+<li>CD to the project directory. e.g. <code>cd E://useragent-detect</code>
+</li>
+<li>Run <code>mvn clean package</code> in your CMD or a terminal.</li>
+<li>Ok. you will get twos jars file under the target folder.
+
+<ul>
+<li>original-useragent-detect-0.0.1-SNAPSHOT.jar(don't include gson classes, so you must import gson jar)</li>
+<li>useragent-detect-0.0.1-SNAPSHOT.jar(include gson classes, this means that you don't have to import gson jar file)</li>
+</ul>
+</li>
+</ol>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<ul>
+<li>Andy Li</li>
+<li>Jia  Li</li>
+<li>Fengding Liao</li>
+</ul>
+
+<h2>
+<a id="how-to-contribute" class="anchor" href="#how-to-contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to contribute</h2>
+
+<p>Fork our project &amp; commit a pull request. We will take any nice idea. Welcome to join us !</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License 2</a></p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">UserAgent  Detect maintained by <a href="https://github.com/bigangel">bigangel</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
